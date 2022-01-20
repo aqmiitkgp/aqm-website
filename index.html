@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="refresh" content="120"> -->
+    <title>Air Quality Monitoring</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+     <div class="intro-text">
+     <h3 style="text-align: center; background-color: goldenrod; font-size: 40px;">AIR QUALITY MONITORING</h3>
+     <p style="text-align: justify; background-color: rgb(118, 215, 196)"><span style="font-weight: bolder; background-color:yellow;">About the Webpage:</span> The Air Quality Monitoring System has a facility to measure environmental parameters like temperature, humidity, the concentration of air pollutants, and particulate matters continuously all year round. As per the guidelines of the Central Pollution Control Board (CPCB) of India, there are 6 foremost air pollutants namely, Sulphur dioxide (SO2), Nitrogen dioxide (NO2), Ozone (O3), Carbon monoxide (CO), PM2.5, and PM10 particulate matter. Among them through this Web Application, we are monitored Ambient Temperature, Carbon monoxide (CO), Air Quality in terms of Smoke, NOx, VOCs Overall Concentration, and PM2.5, PM10 particulate matters. Here, the Air Quality Monitoring is performed by using MSP430 Low-power Microcontroller and Bluetooth HC-05 and the level of severity of the pollutant concentrations are measured in µg/m³ range. This Web Application is developed and maintained by the 'Bioelectronics Innovation Laboratory', Department of Electronics and Electrical Communication Engineering (E&ECE), Indian Institute of Technology Kharagpur, Kharagpur-721302, West Bengal, India, and hosted by GitHub. This work is a part of the research project entitled “Air Quality Monitoring Prototype (AQI)”, sponsored by the Department of Science and Technology (DST), undertaken in the School of NanoScience and Technology of Indian Institute of Technology Kharagpur, Kharagpur-721302, West Bengal, India. </p>
+     </div>
+
+     
+     <form class="time-date-selector" style="font-size: 25px;">
+         <label for="date">Enter Date: </label> 
+         <input type="date" placeholder="DD/MM/YYYY" id="date" style="font-size: 25px; background-color: linen;"> 
+         <button onclick="getData(event)" style="font-size: 25px; background-color: salmon; text-decoration-color: black;">Submit</button>
+     </form>
+     <div class="data-container">
+        <div class="loader"></div>
+        <table id="data" style="width: 100%;">
+            <tr>
+                <th class="td">Timestamp</th>
+                <th class="temp">Temperature (&deg;C)</th>
+                <th class="co">CO (µg/m³)</th>
+                <th class="aq">Air_Quality_in_terms_of_Smoke_NOx_VOCs_Overall_Concentration (µg/m³) </th>
+                <th class="pm25">PM2.5 (µg/m³)</th>
+                <th class="pm10">PM10 (µg/m³)</th>
+            </tr>
+        </table>
+
+     </div>
+     <div class="show-graph-btns">
+
+        <button id="show-aq" onclick="draw_aq_graph()" style="font-size: 20px; background-color: violet;">Click to Show Air Quality (Smoke_NOx_VOCs_Overall_Concentration) Graph</button>
+        <button id="show-pm2" onclick="draw_pm2_graph()" style="font-size: 20px; background-color: mediumseagreen;">Click to Show PM2.5 Graph</button>
+        <button id="show-pm10" onclick="draw_pm10_graph()" style="font-size: 20px; background-color: mediumturquoise">Click to Show PM10 Graph</button>
+        <button id="show-co" onclick="draw_co_graph()" style="font-size: 20px; background-color:peru;">Click to Show CO graph</button>
+        <button id="show-temp" onclick="draw_temp_graph()" style="font-size: 20px; background-color:sandybrown;">Click to Show Temperature graph</button>
+        
+    </div>
+
+    <div class="graphs">
+       <canvas id="aq"></canvas> 
+       <canvas id="pm2"></canvas>
+       <canvas id="pm10"></canvas>
+        <canvas id="co"></canvas>   
+       <canvas id="temp"></canvas>
+    </div>
+
+     <button onclick="signOut()" class="logout">LOG OUT</button>
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+
+<script>
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyBZu1IWjedlEh1qsQkkf34bPSC9PsIMwss",
+      authDomain: "aqmiitkgp.firebaseapp.com",
+      projectId: "aqmiitkgp",
+      databaseURL: "https://aqmiitkgp-default-rtdb.firebaseio.com/",
+      storageBucket: "aqmiitkgp.appspot.com",
+      messagingSenderId: "261429577106",
+      appId: "1:261429577106:web:6d5ecff606b9b229406d4b",
+      measurementId: "G-F9EWD9HYMP"
+};
+// Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    
+    firebase.auth().onAuthStateChanged((user) => {
+    // console.log(user)
+    if(user){
+        // getData()
+        getLocation()
+    }else{
+        console.log("Not logged in index.html")
+        location.href = "signIn.html"
+    }
+})
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.0/dist/Chart.min.js"></script>
+<script src="./index.js"></script>
+</html>
