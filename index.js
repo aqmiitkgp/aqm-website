@@ -1,3 +1,5 @@
+let deployed = true
+
 function signin(event){
     event.preventDefault()
     document.querySelector(".loader-signin").style.display = "block";
@@ -8,7 +10,7 @@ function signin(event){
             // console.log(user)
             console.log("Signed in")
             document.querySelector(".loader-signin").style.display = "none";
-            location.href = "/aqm-website"
+            location.href = deployed ? "/aqm-website" : "/";
             // document.getElementsByClassName("text")[0].style.display = "block";
         })
         .catch((error) => {
