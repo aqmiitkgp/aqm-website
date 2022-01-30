@@ -8,7 +8,7 @@ function signin(event){
             // console.log(user)
             console.log("Signed in")
             document.querySelector(".loader-signin").style.display = "none";
-            location.href = "/AQM_Website"
+            location.href = "/aqm-website"
             // document.getElementsByClassName("text")[0].style.display = "block";
         })
         .catch((error) => {
