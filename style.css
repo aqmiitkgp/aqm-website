@@ -71,15 +71,6 @@ table, th, td {
 .td{
 background-color: rgb(191, 248, 193);
 }
-.temp{
-    background-color: rgb(244, 164, 96);
-}
-.co{
-    background-color: rgb(205, 133, 63);
-}
-.aq{
-    background-color: rgb(238, 130, 228);
-}
 .pm25{
 background-color: rgb(60, 179,113);
 }

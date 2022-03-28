@@ -30,9 +30,9 @@ function signOut(){
 }
 
 var timestamp_arr = Array()
-var temp = Array()
-var co = Array()
-var aq = Array()
+//var temp = Array()
+//var co = Array()
+//var aq = Array()
 var pm2 = Array()
 var pm10 = Array()
 
@@ -53,17 +53,11 @@ function getData(event){
     document.getElementById('data').innerHTML= `
         <tr>
             <th class="td">Timestamp</th>
-            <th class="temp">Temperature (&deg;C)</th>
-            <th class="co">CO (µg/m³)</th>
-            <th class="aq">Air_Quality_in_terms_of_Smoke_NOx_VOCs_Overall_Concentration (µg/m³)</th>
             <th class="pm25">PM2.5 (µg/m³)</th>
             <th class="pm10">PM10 (µg/m³)</th>
         </tr>
     `;
     timestamp_arr = Array()
-    temp = Array()
-    co = Array()
-    aq = Array()
     pm2 = Array()
     pm10 = Array() 
 
@@ -105,9 +99,9 @@ function insert_data(timestamp, data){
         data[i] = Number(data[i].substring(1,data[i].length-1))
     }
     timestamp_arr.push(timestamp)
-    temp.push(data[0])
-    co.push(data[1])
-    aq.push(data[2])
+    //temp.push(data[0])
+    //co.push(data[1])
+    //aq.push(data[2])
     pm2.push(data[3])
     pm10.push(data[4])
     // console.log(data);
@@ -115,9 +109,7 @@ function insert_data(timestamp, data){
     row.innerHTML+= `
         <tr>
             <td class="td">${timestamp}</td>
-            <td class="temp">${data[0]}</td>
-            <td class="co">${data[1]}</td>
-            <td class="aq">${data[2]}</td>
+            
             <td class="pm25">${data[3]}</td>
             <td class="pm10">${data[4]}</td> 
         </tr>`; 
@@ -329,7 +321,7 @@ IF user enters date ---->
 //      });
 //  }
 
-
+/*
  function draw_temp_graph(){
     document.querySelectorAll("canvas").forEach(canvas=> {
         canvas.style.display="none"
@@ -502,7 +494,7 @@ function draw_aq_graph(){
         }
     }
 });
-}
+}*/
 
 function draw_pm2_graph(){
     document.querySelectorAll("canvas").forEach(canvas=> {
